@@ -4,9 +4,8 @@
   "keywords": ["dero", "rpc", "blockchain", "cryptonote"],
   "authors": [
    {
-    "name": "Vance Lucas",
-    "email": "vance@vancelucas.com",
-    "homepage": "http://www.vancelucas.com"
+    "name": "netwarp",
+    "email": "noname@contact.com"
    }
   ],
   "type": "library",
