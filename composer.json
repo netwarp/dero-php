@@ -1,5 +1,5 @@
 {
-  "name": "netwarp/daemon",
+  "name": "netwarp/derophp",
   "description": "Dero RPC",
   "keywords": ["dero", "rpc", "blockchain", "cryptonote"],
   "authors": [
@@ -17,5 +17,10 @@
 
   },
   "minimum-stability": "dev", 
-  "license": []
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "DeroPHP\\": "src/"
+    }
+  }
 }
