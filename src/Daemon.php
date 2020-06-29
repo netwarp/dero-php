@@ -121,9 +121,3 @@ class Daemon
 
     }
 }
-
-$daemon = new Daemon('127.0.0.1', '30306');
-echo $daemon->gettransactions(['txs_hashes' => ['95a0c40c4445c643016b92c36399f9591629be6458fe8ff3c39b003836c60b08']]);
-
-// dETom4Mu5yJ7t3BujwkWUj4DYACZNNByEL9vVbykjigkS6HmSxFfL9zeVwXU7uW3qnbGkrDwNoqgQFhBJH5KwjLN8YCyeRQGsq
-// 654988ba839a358be3df029a429f94d0cdcf30d06a0bf836f556603f059380a2

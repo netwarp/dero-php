@@ -100,6 +100,3 @@ class Wallet {
         return $this->request('get_transfers', $params);
     }
 }
-
-$wallet = new Wallet('127.0.0.1', '30309');
-echo $wallet->get_transfers();
