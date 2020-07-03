@@ -2,8 +2,12 @@
 
 namespace DeroPHP;
 
+use DeroPHP\Traits\Requester;
+
 class Daemon
 {
+    use Requester;
+
 	private string $address;
 	private string $port;
 
@@ -12,49 +16,27 @@ class Daemon
         $this->port = $port;
 	}
 
-    private function request(string $method, $params = null, $verb = 'POST', $path = 'json_rpc') {
-        $url = "http://{$this->address}:{$this->port}/$path";
-
-        $data = [
-            'jsonrpc' => '2.0',
-            'id' => '1',
-            'method' => $method
-        ];
-
-        if ($params) {
-            $data['params'] = $params;
-        }
-
-        $options = [
-            'http' => [
-                'header' => 'Content-Type: application/json',
-                'method' => $verb,
-                'content'=> json_encode($data, JSON_FORCE_OBJECT)
-            ]
-        ];
-
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-
-
-        if ($result === FALSE) {
-
-        }
-        else {
-            header('Content-Type: application/json');
-            return $result;
-        }
-	}
-
+    /**
+     * The method “getblockcount” returns the height of the (currently synced) chain. This is also the currenty unstable height. This method is called without parameters.
+     * Returns the currently synced height of the chain
+     * @return false|string
+     */
 	public function getblockcount() {
         return $this->request('getblockcount');
 	}
 
+    /**
+     * The method “get_info” returns various info about the daemon and the state of the network. This method has no parameters.
+     * Returns various info about the daemon and network
+     * @return false|string
+     */
     public function get_info() {
         return $this->request('get_info');
 	}
 
     /**
+     *
+     * Return a block template (used for mining a block).
      * @param string $wallet_address
      * @param int $reserve_size
      * @return false|string
@@ -72,6 +54,11 @@ class Daemon
 	}
 	*/
 
+    /**
+     * Returns the latest blockheader of the currently synced height
+     * The method “getlastblockheader” returns the latest blockheader of the (currently synced) chain. This is equal to the top unstable height. This method is called without parameters.
+     * @return false|string
+     */
 	public function getlastblockheader() {
         return $this->request('getlastblockheader');
 	}
@@ -121,3 +108,6 @@ class Daemon
 
     }
 }
+
+$d = new Daemon('127.0.0.1', '30306');
+dd($d->getblockcount());
